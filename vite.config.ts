@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import styleImport from 'vite-plugin-style-import' // 按需引入style
 import legacy from '@vitejs/plugin-legacy'
 import path from 'path'
 const resolve = (dir: string) => path.join(__dirname, dir)
@@ -8,6 +9,20 @@ const resolve = (dir: string) => path.join(__dirname, dir)
 export default defineConfig({
 	plugins: [
 		vue(),
+		styleImport({
+      libs: [{
+        libraryName: 'element-plus',
+        esModule: true,
+        ensureStyleFile: true,
+        resolveStyle: (name) => {
+          name = name.slice(3)
+          return `element-plus/packages/theme-chalk/src/${name}.scss`;
+        },
+        resolveComponent: (name) => {
+          return `element-plus/lib/${name}`;
+        },
+      }]
+    }),
 		legacy({
       targets: ['defaults', 'not IE 11']
     })
@@ -21,13 +36,7 @@ export default defineConfig({
   },
   resolve: {
 		alias: {
-			'@': resolve('src'),
-			comps: resolve('src/components'),
-			apis: resolve('src/apis'),
-			views: resolve('src/views'),
-			utils: resolve('src/utils'),
-			routes: resolve('src/routes'),
-			styles: resolve('src/styles')
+			'@': resolve('src')
 		}
   },
   server: {
