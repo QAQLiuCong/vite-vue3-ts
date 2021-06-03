@@ -78,7 +78,7 @@ import {
   // ElTree,
   // ElUpload,
   // ElInfiniteScroll,
-  // ElLoading,
+  ElLoading,
   // ElMessage,
   // ElMessageBox,
   // ElNotification
@@ -165,21 +165,21 @@ const components = [
   // ElUpload
 ]
 
-// const plugins = [
+const plugins = [
 //   ElInfiniteScroll,
-//   ElLoading,
+  ElLoading
 //   ElMessage,
 //   ElMessageBox,
 //   ElNotification
-// ]
+]
 
 export function setupElement(app: any): void {
   components.forEach((component: any) => {
     app.component(component.name, component)
   })
 
-  // plugins.forEach((plugin: any) => {
-  //   app.use(plugin)
-  // })
+  plugins.forEach((plugin: any) => {
+    app.use(plugin)
+  })
   app.config.globalProperties.$ELEMENT = { size: 'small', zIndex: 3000 }
 }
