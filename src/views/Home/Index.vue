@@ -1,40 +1,46 @@
 <template>
-  <HelloWorld />
-  <img v-show="show" src="../../assets/logo.png" alt="" />
-  <el-button v-on:click="show = !show">点击显示/隐藏</el-button>
+  <HelloWorld msg="你好，vue3" />
+  <el-input v-model="searchVal" placeholder="请输入内容" @keyup.enter="search" />
+  <el-button @click="search">搜索</el-button>
   <ul>
-    <li v-for="item of lists" :key="item.objectID">
+    <li v-for="item of lists.hits" :key="item.objectID">
       <a :href="item.url">{{ item.title }}</a>
     </li>
   </ul>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  ref,
-  reactive,
-  onMounted,
-  getCurrentInstance
-} from "vue"
-import HelloWorld from "../../components/HelloWorld";
+import { defineComponent, ref, onMounted, getCurrentInstance } from 'vue'
+import HelloWorld from '@/components/HelloWorld.vue'
+import useListData from './useListData'
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: { HelloWorld },
   setup() {
     // const { appContext }: any = getCurrentInstance()
     // const $app = appContext.config.globalProperties
     // console.log($app);
-    const show = ref<boolean>(true)
+    const searchVal = ref<string>('')
+    const { getData, lists }: any = useListData({searchVal})
+    console.log(1)
+    onMounted(() => {
+      getData()
+    })
     return {
-      show
+      searchVal,
+      lists,
+      search: getData
     }
   }
-});
+})
 </script>
 
 <style lang="scss" scoped>
+.el-input {
+  width: 200px;
+  margin-right: 20px;
+}
 .el-button {
-  padding: 15px;
+  font-size: 14px;
 }
 </style>

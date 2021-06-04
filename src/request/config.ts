@@ -1,4 +1,3 @@
-// import { clearToken, getToken } from '@/tools/cookiesStorage.js'; // 导入vuex
 import { ElLoading, ElMessage } from 'element-plus'
 import { optionsType } from '../types'
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
@@ -9,8 +8,7 @@ function showLoading() {
     fullscreen: true,
     lock: true,
     text: 'Loading',
-    spinner: 'el-icon-loading',
-    background: 'rgba(255, 255, 255, 0.5)'
+    background: 'rgba(255, 255, 255, 0.8)'
   })
 }
 function hideLoading() {
@@ -20,13 +18,11 @@ function hideLoading() {
   }, 10)
 }
 const service = axios.create({
-  baseURL: ''
+  baseURL: '/api'
 })
 
 service.interceptors.request.use(
-  (config) => {
-    // 请求头用于接口token 认证
-    // getToken() && (config.headers['Authorization'] = getToken())
+  (config: AxiosRequestConfig) => {
     showLoading()
     return config
   },

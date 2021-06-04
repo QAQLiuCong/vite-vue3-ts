@@ -1,14 +1,22 @@
-import { toRefs, reactive } from 'vue'
-import { getHitsList } from '@/request/index'
-export default (option: any) => {
-  const { url } = option
-  const params = reactive({
+import { toRefs, reactive, isRef } from 'vue'
+import { getHitsList } from '../../request/index'
+export default (options: any) => {
+  const { searchVal } = options
+  console.log(isRef(searchVal))
+  const state = reactive({
+    lists: <any>[]
   })
-  const requestData = async () => {
+  const getData = async () => {
     try {
-      // const res = await 
+      const res = await getHitsList({ query: searchVal.value })
+      state.lists = res
+      console.log(2)
     } catch (e) {
-      
+      console.log(e)
     }
-   }
+  }
+  return {
+    getData,
+    ...toRefs(state)
+  }
 }

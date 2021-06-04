@@ -31,7 +31,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@', replacement: path.resolve(__dirname,'./src')
+        find: '@',
+        replacement: path.resolve(__dirname, './src')
       }
     ]
   },
@@ -50,9 +51,9 @@ export default defineConfig({
     proxy: {
       // 选项写法
       '/api': {
-        target: '',
+        target: 'https://hn.algolia.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        // rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
