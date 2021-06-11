@@ -3,7 +3,7 @@
   <el-input v-model="searchVal" placeholder="请输入内容" @keyup.enter="search" />
   <el-button @click="search">搜索</el-button>
   <ul>
-    <li v-for="item of lists.hits" :key="item.objectID">
+    <li v-for="item of lists" :key="item.objectID">
       <a :href="item.url">{{ item.title }}</a>
     </li>
   </ul>
@@ -12,7 +12,8 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted, getCurrentInstance } from 'vue'
 import HelloWorld from '@/components/HelloWorld.vue'
-import useListData from './useListData'
+import { getHitsList } from '@/request/index'
+import useListData from './getListData'
 export default defineComponent({
   name: 'Home',
   components: { HelloWorld },
@@ -21,15 +22,19 @@ export default defineComponent({
     // const $app = appContext.config.globalProperties
     // console.log($app);
     const searchVal = ref<string>('')
-    const { getData, lists }: any = useListData({searchVal})
-    console.log(1)
+    const { getListData, lists }: any = useListData({
+      url: getHitsList,
+      params: {
+        query: searchVal
+      }
+    })
     onMounted(() => {
-      getData()
+      getListData()
     })
     return {
       searchVal,
       lists,
-      search: getData
+      search: getListData
     }
   }
 })
@@ -37,7 +42,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .el-input {
-  width: 200px;
+  width: 240px;
   margin-right: 20px;
 }
 .el-button {

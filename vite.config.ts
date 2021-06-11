@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import' // 按需引入style
 import legacy from '@vitejs/plugin-legacy' // 为打包后的文件提供传统浏览器兼容性支持
-import path from 'path'
+const { resolve } = require('path')
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,7 +32,7 @@ export default defineConfig({
     alias: [
       {
         find: '@',
-        replacement: path.resolve(__dirname, './src')
+        replacement: resolve(__dirname, './src')
       }
     ]
   },
