@@ -38,7 +38,7 @@ export default defineConfig({
   },
   server: {
     //服务器主机名
-    host: '',
+    host: 'localhost',
     //端口号
     port: 8888,
     //设为 true 时若端口已被占用则会直接退出，而不是尝试下一个可用端口
