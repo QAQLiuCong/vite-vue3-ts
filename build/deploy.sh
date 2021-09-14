@@ -9,12 +9,12 @@ base_dir="${sh_dir}/.."
 dist_dir="${base_dir}/dist"
 # nginx目录
 nginx_dir="/usr/local/nginx"
-# teacher目录
-teacher_dir="${nginx_dir}/html/teacher"
+# project
+project_dir="${nginx_dir}/html/project"
 # sbin目录
 sbin_dir="${nginx_dir}/sbin"
 # 包名
-tar_name="teacher.tar.gz"
+tar_name="project.tar.gz"
 echo '====================开始构建==========================='
 echo '构建的版本号:'${BUILD_NUMBER}
 echo '当前目录: ' ${base_dir}
@@ -24,12 +24,12 @@ npm install
 # 删除旧的dist文件
 rm -rf dist
 npm run build:prod
-# 将dist目录打包到nginx/html/teacher目录下
+# 将dist目录打包到nginx/html/project目录下
 cd ${dist_dir}
-tar -zcvf "${teacher_dir}/${tar_name}" *
+tar -zcvf "${project_dir}/${tar_name}" *
 echo '====================打包完毕==========================='
 # 回到Nginx目录下解压刚打的包
-cd ${teacher_dir}
+cd ${project_dir}
 tar -zxvf ${tar_name}
 # 删除gz包
 rm -rf ${tar_name}
