@@ -20,7 +20,7 @@ echo '构建的版本号：'${BUILD_NUMBER}
 echo '当前目录: ' ${base_dir}
 # 返回到跟目录 安装包
 # cd ${dist_dir}
-echo 'npm install'
+echo '+npm install'
 npm install
 # 删除旧的dist文件
 # rm -rf dist
