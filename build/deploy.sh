@@ -17,7 +17,7 @@ sbin_dir="${nginx_dir}/sbin"
 tar_name="project.tar.gz"
 echo 'dist_dir: ' ${dist_dir}
 echo '====================开始构建==========================='
-echo '构建的版本号:'${BUILD_NUMBER}
+echo '构建的版本号：'${BUILD_NUMBER}
 echo '当前目录: ' ${base_dir}
 # 返回到跟目录 安装包
 cd ${dist_dir}
