@@ -15,7 +15,6 @@ project_dir="${nginx_dir}/html/project"
 sbin_dir="${nginx_dir}/sbin"
 # 包名
 tar_name="project.tar.gz"
-echo 'dist_dir: ' ${dist_dir}
 echo '====================开始构建==========================='
 echo '构建的版本号：'${BUILD_NUMBER}
 echo '当前目录: ' ${base_dir}
