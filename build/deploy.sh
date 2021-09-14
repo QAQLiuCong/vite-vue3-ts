@@ -4,7 +4,7 @@ set -e
 # 脚本所在目录
 sh_dir=$(cd "$(dirname "$0")";pwd)
 # 项目根目录
-base_dir="${sh_dir}/.."
+base_dir="${sh_dir}"
 # dist目录
 dist_dir="${base_dir}/dist"
 # nginx目录
