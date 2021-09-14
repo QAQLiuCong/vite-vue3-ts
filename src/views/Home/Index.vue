@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld msg="你好1，vue3" />
+  <HelloWorld msg="你好，vue3" />
   <div class="container">
     <div v-for="(item, index) in itemlist" :key="index">{{ item }}</div>
   </div>
