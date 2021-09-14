@@ -24,7 +24,7 @@ echo '+npm install'
 npm install
 # 删除旧的dist文件
 # rm -rf dist
-echo 'npm run build'
+echo '+npm run build'
 npm run build
 # 将dist目录打包到nginx/html/project目录下
 cd ${dist_dir}
