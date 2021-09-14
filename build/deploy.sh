@@ -20,9 +20,11 @@ echo '构建的版本号：'${BUILD_NUMBER}
 echo '当前目录: ' ${base_dir}
 # 返回到跟目录 安装包
 # cd ${dist_dir}
+echo 'npm install'
 npm install
 # 删除旧的dist文件
 # rm -rf dist
+echo 'npm run build'
 npm run build
 # 将dist目录打包到nginx/html/project目录下
 cd ${dist_dir}
